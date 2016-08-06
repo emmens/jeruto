@@ -1,0 +1,21 @@
+{
+	"name": "Quiche Lorraine",
+	"id": "quiche-lorraine-1",
+	"description": "Quiche made with cheese and bacon.",
+	"url": "http://www.bbcgoodfood.com/recipes/2868/ultimate-quiche-lorraine",
+	"image": "images/recipes/quiche-lorraine-1",
+	"ingredients": [
+		"chopped tomatoes",
+		"beef mince",
+		"bechamel sauce",
+		"beef stock",
+		"lasagna sheets",
+		"onions",
+		"garlic",
+		"oregano",
+		"this",
+		"that",
+		"orange",
+		"all sorts"
+	]
+}

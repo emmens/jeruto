@@ -1,0 +1,38 @@
+<p>
+    Search My Recipes:
+    <input ng-model="query" />
+</p>
+<p>
+	Sort by:
+	<select ng-model="orderProp">
+		<option value="name">Alphabetical</option>
+		<option value="ingredients.length">Number of Ingredients</option>
+	</select>
+</p>
+
+<div class="recipes">
+	<ul>
+		<li ng-repeat="recipe in filteredRecipes = (recipes | filter:query) | orderBy:orderProp"
+			ng-click="gotoRecipe()" >
+		 <a href="#!/recipes/{{recipe.id}}" class="thumb">
+<!--             <img ng-src="{{recipe.imageUrl}}" alt="{{recipe.name}}" />
+ -->          </a>
+          <a href="#!/recipes/{{recipe.id}}">{{recipe.name}}</a>
+		</li>
+	</ul>
+	<p ng-hide="filteredRecipes.length">No recipes for that yet!</p>
+</div>
+<button ng-click="showNewForm = true" >New Recipe</a></button>
+
+
+<form ng-show="showNewForm" name="recipeForm" role="form">
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" ng-model="recipe.name" name="name"/>
+    </div>
+    <div class="form-group">
+        <label for="createDescription">Description:</label>
+        <input type="text" class="form-control" ng-model="recipe.description" name="description" />
+    </div>
+    <button ng-click="saveRecipe()">Save</a></button>    
+</form>

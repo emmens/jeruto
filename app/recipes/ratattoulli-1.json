@@ -1,0 +1,17 @@
+{
+	"name": "Ratattoulli",
+	"id": "quiche-lorraine-1",
+	"description": "",
+	"url": "http://allrecipes.com/recipe/23600/worlds-best-lasagna/",
+	"image": "images/recipes/lasagna-1",
+	"ingredients": [
+		"chopped tomatoes",
+		"beef mince",
+		"bechamel sauce",
+		"beef stock",
+		"lasagna sheets",
+		"onions",
+		"garlic",
+		"oregano"
+	]
+}

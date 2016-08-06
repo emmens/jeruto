@@ -1,0 +1,42 @@
+[
+  {
+    "id": "lasagna-1",
+    "name": "Lasagna"
+  },
+  {
+    "id": "ratattoulli-1",
+    "name": "Ratattoulli"
+  },
+  {
+    "id": "quiche-lorraine-1",
+    "name": "Quiche Lorraine"
+  },
+  {
+    "id": "bangers-&-mash-1",
+    "name": "Bangers & Mash"
+  },
+  {
+    "id": "pork-loin-1",
+    "name": "Pork Loin"
+  },
+  {
+    "id": "chicken-fried-rice-1",
+    "name": "Chicken Fried Rice"
+  },
+  {
+    "id": "steak-&-chips-1",
+    "name": "Steak & Chips"
+  },
+  {
+    "id": "tuna-pasta-salad-1",
+    "name": "Tuna Pasta Salad"
+  },
+  {
+    "id": "chicken-pie-1",
+    "name": "Chicken Pie"
+  },
+  {
+    "id": "pizza-1",
+    "name": "Pizza"
+  }
+]

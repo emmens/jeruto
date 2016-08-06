@@ -1,0 +1,30 @@
+<h1>Lets make some tasty {{recipe.name}}!</h1>
+    <img ng-src="{{recipe.imageUrl}}" alt="{{recipe.name}}" />
+<ul>
+	<li>Description: {{recipe.description}}</li>
+	<li>You need:
+		<ul>
+			<li ng-repeat="ingredient in recipe.ingredients">
+				{{ingredient | capitalize}}
+			</li>
+		</ul>
+	</li>
+	<li><a href="{{recipe.url}}">Link to recipe</a></li>
+</ul>
+
+<button ng-click="deleteRecipe(recipe)">Delete this recipe</button>
+<button ng-click="showUpdateForm=true">Update</button>
+<!-- <button ng-click="updateGetRecipe(recipe)" ng-click="showUpdateForm=true">Update</button>
+ --><button ng-click="goBack()">Back</button>
+
+<form ng-show="showUpdateForm" name="recipeForm" role="form">
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" class="form-control" ng-model="recipe.name" name="name"/>
+    </div>
+    <div class="form-group">
+        <label for="createDescription">Description:</label>
+        <input type="text" class="form-control" ng-model="recipe.description" name="description" />
+    </div>
+    <button ng-click="updateGetResource()">Save</a></button>    
+</form>

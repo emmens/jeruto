@@ -17,17 +17,19 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('!');
+
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/recipe-list.html',
+        controller: 'RecipeListCtrl',
+        controllerAs: 'recipe-list'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/recipes/:recipeId', {
+        templateUrl: 'views/recipe-detail.html',
+        controller: 'RecipeDetailCtrl',
+        controllerAs: 'recipe-detail'
       })
       .otherwise({
         redirectTo: '/'
