@@ -14,9 +14,15 @@
  	$scope.orderProp = 'name';
  	$scope.showNewForm = false;
 
- 	$scope.deleteGetResource = function(recipeId) {
-        $scope.deleteGame = Recipe.get({recipeId: recipeId});
-    };
+
+    $scope.list = [];
+    $scope.text = '';
+	$scope.submit = function() {
+	  if ($scope.text) {
+	      $scope.list.push($scope.text);
+	      $scope.text = '';
+	    }
+	  };
 
  	$scope.saveRecipe = function() {
  		Recipe.save($scope.recipe, function(recipe) {

@@ -1,5 +1,6 @@
 <h1>Lets make some tasty {{recipe.name}}!</h1>
-    <img ng-src="{{recipe.imageUrl}}" alt="{{recipe.name}}" />
+
+<img ng-src="{{recipe.imageUrl}}" alt="{{recipe.name}}" />
 <ul>
 	<li>Description: {{recipe.description}}</li>
 	<li>You need:
@@ -11,20 +12,46 @@
 	</li>
 	<li><a href="{{recipe.url}}">Link to recipe</a></li>
 </ul>
-
-<button ng-click="deleteRecipe(recipe)">Delete this recipe</button>
-<button ng-click="showUpdateForm=true">Update</button>
-<!-- <button ng-click="updateGetRecipe(recipe)" ng-click="showUpdateForm=true">Update</button>
- --><button ng-click="goBack()">Back</button>
+<div ng-hide="showUpdateForm || showIngredientForm">
+	<button class="btn btn-primary" ng-click="updateGetRecipe(recipe); showUpdateForm = true">Update</button>
+	<button class="btn btn-primary" ng-click="updateGetRecipe(recipe); showIngredientForm = true"
+	ng-hide="showIngredientForm">Add ingredients</button>
+	<button class="btn btn-primary" ng-click="goBack()">Back</button><br>
+	<button class="btn btn-danger" ng-click="deleteRecipe(recipe)" >Delete this recipe</button>
+</div>
 
 <form ng-show="showUpdateForm" name="recipeForm" role="form">
-    <div class="form-group">
-        <label>Name:</label>
-        <input type="text" class="form-control" ng-model="recipe.name" name="name"/>
-    </div>
-    <div class="form-group">
-        <label for="createDescription">Description:</label>
-        <input type="text" class="form-control" ng-model="recipe.description" name="description" />
-    </div>
-    <button ng-click="updateGetResource()">Save</a></button>    
+	<div class="form-group">
+		<label>Name:</label>
+		<input type="text" class="form-control" ng-model="updateRecipe.name" name="name"/>
+	</div>
+	<div class="form-group">
+		<label for="createDescription">Description:</label>
+		<input type="text" class="form-control" ng-model="updateRecipe.description" name="description" />
+	</div>
+	<div class="form-group">
+		<label for="createUrl">Link to recipe page:</label>
+		<input type="text" class="form-control" ng-keypress="appendIngre"
+		ng-model="updateRecipe.url" name="url" />
+	</div>
+	<button class="btn btn-primary" ng-click="update(updateRecipe); showUpdateForm = false">Save</a></button>  
+	<button class="btn btn-danger" ng-click="showUpdateForm=false">Cancel</a></button>      
 </form>
+
+
+<div class="container" ng-show="showIngredientForm">
+	<form name="ingredients-form" ng-submit="submit()" role="form">
+	Enter text and hit enter:
+	<input type="text" ng-model="text" name="text" placeholder="e.g. garlic" />
+    <pre>list={{list}}</pre>
+	</form>
+	<button class="btn btn-primary" ng-click="appendIngredients(); update(updateRecipe); showIngredientForm = false">Add ingredients to list</button>
+	<button class="btn btn-danger" ng-click="showIngredientForm=false">Cancel</a></button>      
+</div>
+
+
+
+<!-- <ng-include src="'views/ingredients-form.html'"></ng-include>
+-->
+
+
