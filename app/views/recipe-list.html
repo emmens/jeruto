@@ -1,6 +1,6 @@
 <p>
     Search My Recipes:
-    <input ng-model="query" />
+    <input ng-model="query"/>
 </p>
 <p>
 	Sort by:
@@ -22,35 +22,33 @@
 	</ul>
 	<p ng-hide="filteredRecipes.length">No recipes for that yet!</p>
 </div>
-<button class="btn btn-primary" ng-click="showNewForm = true" ng-hide="showNewForm" >New Recipe</a></button>
+<button class="btn btn-primary" ng-click="openNewForm()" ng-hide="newFormOpen" >New Recipe</a></button>
 
-<form ng-show="showNewForm" name="recipeForm" role="form">
-    <div class="form-group">
-        <label>Name:</label>
-        <input type="text" class="form-control" ng-model="recipe.name" name="name"/>
-    </div>
-    <div class="form-group">
-        <label for="createDescription">Description:</label>
-        <input type="text" class="form-control" ng-model="recipe.description" name="description" />
-    </div>
-    <div class="form-group">
-        <label for="createUrl">Link to recipe page:</label>
-        <input type="text" class="form-control" ng-model="recipe.url" name="url" />
-    </div>
-    <!-- <label for="createIngredients">Add Ingredients:</label>
-    Enter text and hit enter:
-	<input type="text" ng-model="text" ng-submit="submit()"name="text" placeholder="e.g. garlic" />
-    <pre>list={{list}}</pre> -->
-    <button class="btn btn-primary" ng-click="showNewForm=false; showIngredientForm=true">Next</a></button>    
-    <button class="btn btn-danger" ng-click="showNewForm=false; showIngredientForm=true">Cancel</a></button>    
-</form>
+<div ng-show="newFormOpen" close="closeNewForm()">
+    <form>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" ng-model="recipe.name" name="name" focus-me="newFormOpen"/>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" class="form-control" ng-model="recipe.description" name="description" />
+        </div>
+        <div class="form-group">
+            <label>Link to recipe page:</label>
+            <input type="text" class="form-control" ng-model="recipe.url" name="url" />
+        </div>
+        <button class="btn btn-primary" ng-click="closeNewForm(); openIngredientForm()">Next</a></button>    
+        <button class="btn btn-danger" ng-click="closeNewForm()">Cancel</a></button>
+    </form>
+</div>
 
-<div class="container" ng-show="showIngredientForm">
-	<form name="ingredients-form" ng-submit="submit()" role="form">
-	Enter text and hit enter:
-	<input type="text" ng-model="text" name="text" placeholder="e.g. garlic" />
-    <pre>list={{list}}</pre>
-	</form>
-	<button class="btn btn-primary" ng-click="appendIngredients(); saveRecipe(); showIngredientForm = false">Add ingredients to list</button>
-	<button class="btn btn-danger" ng-click="showIngredientForm=false">Cancel</a></button>      
+<div ng-show="ingredientFormOpen" close="closeIngredientForm()">
+	<form ng-submit="submit()">
+    	Enter text and hit enter:
+    	<input type="text" ng-model="text" name="text" placeholder="e.g. garlic" focus-me="ingredientFormOpen">
+        <pre>list={{list}}</pre>
+    	</form>
+	<button class="btn btn-primary" ng-click="appendIngredients(); saveRecipe(); closeIngredientForm()">Add ingredients to list</button>
+	<button class="btn btn-danger" ng-click="closeIngredientForm()">Cancel</a></button> 
 </div>
