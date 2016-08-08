@@ -13,7 +13,24 @@
  	$scope.recipes = Recipe.query();
  	$scope.orderProp = 'name';
  	$scope.recipe =  new Recipe();
- 	$scope.recipe.ingredients = [];
+ 	$scope.recipe.ingredients = [];  
+
+
+    $scope.list = [];
+    $scope.text = '';
+    $scope.submit = function() {
+    if ($scope.text) {
+        $scope.list.push($scope.text);
+        $scope.text = '';
+    } 
+    };
+
+    $scope.undoIngredient = function(entry) {''
+        var index = $scope.list.indexOf(entry);
+        if (index > -1) {
+            $scope.list.splice(index, 1);
+        }
+    }
  	
     $scope.openNewForm = function () {
         $scope.newFormOpen = true;
@@ -31,15 +48,6 @@
         $scope.ingredientFormOpen = false;
     };
 
-    $scope.list = [];
-    $scope.text = '';
-    $scope.submit = function() {
-    if ($scope.text) {
-        $scope.list.push($scope.text);
-        $scope.text = '';
-    } 
-  };
-
     $scope.appendIngredients = function() {
     	$scope.list.forEach(function(item, index) {
 			if ($scope.recipe.ingredients.indexOf(item) == -1) { $scope.recipe.ingredients.push(item)}
@@ -50,4 +58,9 @@
 			$window.location.href = '/#!/recipes/' + recipe.id;
 		});
 	}
+
+    $scope.goBack = function() {
+        closeIngredientForm()
+        openNewForm();
+    }
  });

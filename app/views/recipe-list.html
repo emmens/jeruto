@@ -24,7 +24,7 @@
 </div>
 <button class="btn btn-primary" ng-click="openNewForm()" ng-hide="newFormOpen" >New Recipe</a></button>
 
-<div ng-show="newFormOpen" close="closeNewForm()">
+<div ng-show="newFormOpen">
     <form>
         <div class="form-group">
             <label>Name:</label>
@@ -38,7 +38,7 @@
             <label>Link to recipe page:</label>
             <input type="text" class="form-control" ng-model="recipe.url" name="url" />
         </div>
-        <button class="btn btn-primary" ng-click="closeNewForm(); openIngredientForm()">Next</a></button>    
+        <button class="btn btn-primary" ng-click="openIngredientForm(); closeNewForm()">Next</a></button>    
         <button class="btn btn-danger" ng-click="closeNewForm()">Cancel</a></button>
     </form>
 </div>
@@ -48,7 +48,14 @@
     	Enter text and hit enter:
     	<input type="text" ng-model="text" name="text" placeholder="e.g. garlic" focus-me="ingredientFormOpen">
         <pre>list={{list}}</pre>
-    	</form>
-	<button class="btn btn-primary" ng-click="appendIngredients(); saveRecipe(); closeIngredientForm()">Add ingredients to list</button>
+        <ul>
+            <li ng-repeat="entry in list">
+                {{entry}}
+                <button type="button" ng-click="undoIngredient(entry)">Remove</button>
+            </li>
+        </ul>  
+    </form>
+	<button class="btn btn-primary" ng-click="appendIngredients(); saveRecipe(); closeIngredientForm()">Create recipe</button>
+    <button class="btn btn-primary" ng-click="closeIngredientForm(); openNewForm();">Back</button>
 	<button class="btn btn-danger" ng-click="closeIngredientForm()">Cancel</a></button> 
 </div>
