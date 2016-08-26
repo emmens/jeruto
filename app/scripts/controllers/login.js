@@ -7,4 +7,8 @@ angular.module('jerutoApp')
   		Authentication.loginUser($scope.user);
   	};
 
+  	$scope.loginUserFacebook = function() {
+  		Authentication.loginUserFacebook($scope.user);
+  	};
+
   }); 

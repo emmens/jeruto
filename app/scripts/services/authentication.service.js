@@ -18,7 +18,7 @@ angular.module('jerutoApp')
     });
 
     var myObject = {
-    
+
       loginUser: function(user) {
         auth.$signInWithEmailAndPassword(user.email, user.password)
         .then(function(regUser) {
@@ -36,6 +36,14 @@ angular.module('jerutoApp')
       requireAuth: function() {
         return auth.$requireSignIn();
       }, //require authentication
+
+      loginUserFacebook: function(user) {
+        auth.$signInWithPopup("facebook").then(function(result) {
+          console.log("Signed in as:", result.user.uid);
+        }).catch(function(error) {
+          $rootScope.message = error.message;
+        });
+      },
 
       createUser: function(user) {
         auth.$createUserWithEmailAndPassword(user.email, user.password)
