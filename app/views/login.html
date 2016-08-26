@@ -34,6 +34,16 @@
     <p>or <a ng-href="#/register">register</a></p>
   </form>
 </section>
-  <div>
-    <button ng-click="loginUserFacebook()">Continue with facebook</button>
-  </div>
+<!-- Facbook -->
+<div>
+  <button ng-click="loginUserFacebook()">Continue with facebook</button>
+</div>
+<div>
+
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+
+<div id="status">
+</div>
