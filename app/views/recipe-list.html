@@ -22,31 +22,37 @@
 	</ul>
 	<p ng-hide="filteredRecipes.length">No recipes for that yet!</p>
 </div>
-<button class="btn btn-primary" ng-click="openNewForm()" ng-hide="newFormOpen" >New Recipe</a></button>
+<button class="btn btn-primary" ng-click="openNewForm()" ng-hide="newFormOpen || ingredientFormOpen" >New Recipe</a></button>
 
-<div ng-show="newFormOpen">
-    <form>
-        <div class="form-group">
-            <label>Name:</label>
-            <input type="text" class="form-control" ng-model="recipe.name" name="name" focus-me="newFormOpen"/>
-        </div>
-        <div class="form-group">
-            <label>Description:</label>
-            <input type="text" class="form-control" ng-model="recipe.description" name="description" />
-        </div>
-        <div class="form-group">
-            <label>Link to recipe page:</label>
-            <input type="text" class="form-control" ng-model="recipe.url" name="url" />
-        </div>
-        <button class="btn btn-primary" ng-click="openIngredientForm(); closeNewForm()">Next</a></button>    
-        <button class="btn btn-danger" ng-click="closeNewForm()">Cancel</a></button>
-    </form>
-</div>
 
-<div ng-show="ingredientFormOpen" close="closeIngredientForm()">
-	<form ng-submit="submit()">
-    	Enter text and hit enter:
-    	<input type="text" ng-model="text" name="text" placeholder="e.g. garlic" focus-me="ingredientFormOpen">
+<form name="newForm" ng-show="newFormOpen">
+    <div class="form-group">
+        <label>Name:</label>
+        <input type="text" name="name" class="form-control" ng-model="recipe.name" focus-me="newFormOpen" ng-required="true"/>
+        <p class="error validationerror"
+        ng-show="newForm.name.$invalid && newForm.name.$touched">
+        Name is required.</p>
+    </div>
+    <div class="form-group">
+        <label>Description:</label>
+        <input type="text" name="description" class="form-control" ng-model="recipe.description"/>
+    </div>
+    <div class="form-group">
+        <label>Link to recipe page:</label>
+        <input type="text" class="form-control" ng-model="recipe.url" name="url" />
+    </div>
+    <button class="btn btn-primary" ng-click="openIngredientForm(); closeNewForm()" ng-disabled="newForm.$invalid">Next</a></button>    
+    <button class="btn btn-danger" ng-click="closeNewForm()">Cancel</a></button>
+</form>
+
+
+<form name="ingredientForm" ng-show="ingredientFormOpen" close="closeIngredientForm()" ng-submit="submit()" novalidate>
+
+    Enter text and hit enter:
+	<fieldset>
+    	<input type="text" name="ingredients" ng-model="text"  placeholder="e.g. garlic"
+        focus-me="ingredientFormOpen">
+
         <pre>list={{list}}</pre>
         <ul>
             <li ng-repeat="entry in list">
@@ -54,8 +60,10 @@
                 <button type="button" ng-click="undoIngredient(entry)">Remove</button>
             </li>
         </ul>  
-    </form>
-	<button class="btn btn-primary" ng-click="appendIngredients(); saveRecipe(); closeIngredientForm()">Create recipe</button>
-    <button class="btn btn-primary" ng-click="closeIngredientForm(); openNewForm();">Back</button>
-	<button class="btn btn-danger" ng-click="closeIngredientForm()">Cancel</a></button> 
-</div>
+    </fieldset>
+    <div>
+    	<button type="button" class="btn btn-primary" ng-click="appendIngredients(); saveRecipe(); closeIngredientForm()">Create recipe</button>
+        <button type="button"  class="btn btn-primary" ng-click="closeIngredientForm(); openNewForm();" >Back</button>
+        <button type="button" class="btn btn-danger" ng-click="closeIngredientForm()">Cancel</a></button>
+    </div>
+</form>

@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name jerutoApp.controller:RecipeDetailCtrl
- * @description
- * # RecipeDetailCtrl
- * Controller of the jerutoApp
- */
  angular.module('jerutoApp')
  .controller('RecipeDetailCtrl', function (Recipe, $scope, $routeParams, $window) {
 
