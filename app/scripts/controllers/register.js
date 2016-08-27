@@ -15,5 +15,4 @@ angular.module('jerutoApp')
   		Authentication.logout($scope.user);
   	};
 
-
   }); 

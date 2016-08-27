@@ -6,9 +6,6 @@
     <div class="textintro">
       <h1>Hi there!</h1>
       <p>Log-in to access the awesomeness!</p>
-      <p class="message" 
-        ng-show="message"> {{ message }}</p>
-    </div>
 
     <fieldset>
       <div class="form-group">
@@ -34,16 +31,10 @@
     <p>or <a ng-href="#/register">register</a></p>
   </form>
 </section>
+
 <!-- Facbook -->
-<div>
-  <button ng-click="loginUserFacebook()">Continue with facebook</button>
+<div ng-hide="currentUser">
+  <p>Or continue with facebook.</p>
+  <fb:login-button data-auto-logout-link="true" scope="public_profile,email" size="large"></fb:login-button>  
 </div>
-<div>
 
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-
-<div id="status">
-</div>

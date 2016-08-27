@@ -11,4 +11,8 @@ angular.module('jerutoApp')
   		Authentication.loginUserFacebook($scope.user);
   	};
 
+  	$scope.getFacebookUserInfo = function() {
+  		Authentication.getFacebookUserInfo();
+  	};
+
   }); 

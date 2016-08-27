@@ -19,13 +19,40 @@
   'firebase'
   ]).constant('FIREBASE_URL', 'https://angreg-cc54a.firebaseio.com/')
 
-jerutoApp.run(['$rootScope', '$location', function($rootScope, $location) {
+jerutoApp.run(['$rootScope', '$location', '$window', 'Authentication', function($rootScope, $location, $window, Authentication) {
+  
   $rootScope.$on ('$routeChangeError', function(event, next, previous, error){
     if (error=='AUTH_REQUIRED') {
       $rootScope.message = 'Sorry, you must log in to access that page';
       $location.path('/login');
     }
   })
+
+  $window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1777493589163858',
+      channelUrl : 'app/channel.html',
+      status     : true,
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+
+    FB.getLoginStatus(function(response) {
+      Authentication.statusChangeCallback(response);
+    });
+
+    FB.Event.subscribe('auth.authResponseChange', Authentication.checkLoginState);
+  };
+
+  // Load the SDK asynchronously
+ (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
 }]);
       
 
